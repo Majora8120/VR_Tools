@@ -6,7 +6,7 @@ namespace VR_Tools.Functions;
 
 public static class Registry
 {
-    public static LogMessage EditRegistry(bool disableASW)
+    public static void EditRegistry(bool disableASW)
     {
         string message = "null";
         string type = "ERROR";
@@ -47,6 +47,7 @@ public static class Registry
             }
             key.Close();
         }
-        return new LogMessage(message, type);
+        Log.AddLine(message, type);
+        return;
     }
 }

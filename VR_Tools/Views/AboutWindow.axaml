@@ -9,7 +9,7 @@
 	<StackPanel Margin="25" TextElement.Foreground="#ffffffff">
 		<TextBlock Margin="1" FontSize="14">Develeped by Majora8120</TextBlock>
 		<TextBlock/>
-		<TextBlock Margin="1" FontSize="14">Made with Avalonia &amp; MessageBox.Avalonia</TextBlock>
+		<TextBlock Margin="1" FontSize="14">Made with Avalonia</TextBlock>
 		<TextBlock Margin="1" FontSize="14">Oculus Killer made by Bnuuy Solutions</TextBlock>
 		<HyperlinkButton Margin="-5, 10, 0, 0" FontSize="14" NavigateUri="https://github.com/Majora8120/VR_Tools">VR Tools Github</HyperlinkButton>
 		<HyperlinkButton Margin="-5, 0, 0, 0" FontSize="14" NavigateUri="https://github.com/BnuuySolutions/OculusKiller">Oculus Killer Github</HyperlinkButton>

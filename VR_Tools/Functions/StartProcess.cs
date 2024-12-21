@@ -5,7 +5,7 @@ namespace VR_Tools.Functions;
 
 public static class StartProcess
 {
-    public static LogMessage Program(string name, string path)
+    public static void Program(string name, string path)
     {
         string message = "null";
         string type = "ERROR";
@@ -13,23 +13,26 @@ public static class StartProcess
         if (File.Exists(path) == false)
         {
             (message, type) = ($"Invalid Path: {path}", "ERROR");
-            return new LogMessage(message, type);
+            Log.AddLine(message, type);
+            return;
         }
 
         Process[] process = Process.GetProcessesByName(name);
         if (process.Length != 0)
         {
             (message, type) = ($"Process is already running", "ERROR");
-            return new LogMessage(message, type);
+            Log.AddLine(message, type);
+            return;
         }
         else
         {
             Process.Start(path);
             (message, type) = ($"Opened {name}", "INFO");
-            return new LogMessage(message, type);
+            Log.AddLine(message, type);
+            return;
         }
     }
-    public static LogMessage Explorer(string path)
+    public static void Explorer(string path)
     {
         string message = "null";
         string type = "ERROR";
@@ -37,11 +40,13 @@ public static class StartProcess
         if (Directory.Exists(path) == false)
         {
             (message, type) = ($"Invalid Path: {path}", "ERROR");
-            return new LogMessage(message, type);
+            Log.AddLine(message, type);
+            return;
         }
 
         Process.Start("explorer.exe", path);
         (message, type) = ($"Opened {path}", "INFO");
-        return new LogMessage(message, type);
+        Log.AddLine(message, type);
+        return;
     }
 }

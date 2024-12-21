@@ -6,7 +6,7 @@ namespace VR_Tools.Functions;
 public static class Service
 {
     private const string ServiceName = "OVRService";
-    public static LogMessage StartService()
+    public static void StartService()
     {
         string message = "null";
         string type = "ERROR";
@@ -16,16 +16,18 @@ public static class Service
         {
             sc.Start();
             (message, type) = ("Service Started", "INFO");
-            return new LogMessage(message, type);
+            Log.AddLine(message, type);
+            return;
         }
         else if (sc.Status == ServiceControllerStatus.StartPending | sc.Status == ServiceControllerStatus.Running)
         {
             (message, type) = ("Service is already running", "ERROR");
-            return new LogMessage(message, type);
+            Log.AddLine(message, type);
+            return;
         }
-        return new LogMessage(message, type);
+        return;
     }
-    public static LogMessage StopService()
+    public static void StopService()
     {
         string message = "null";
         string type = "ERROR";
@@ -35,13 +37,15 @@ public static class Service
         {
             sc.Stop();
             (message, type) = ("Service Stopped", "INFO");
-            return new LogMessage(message, type);
+            Log.AddLine(message, type);
+            return;
         }
         else if (sc.Status == ServiceControllerStatus.Stopped | sc.Status == ServiceControllerStatus.StopPending)
         {
             (message, type) = ("Service is already stopped", "ERROR");
-            return new LogMessage(message, type);
+            Log.AddLine(message, type);
+            return;
         }
-        return new LogMessage(message, type);
+        return;
     }
 }

@@ -60,20 +60,6 @@
 				</StackPanel>
 			</WrapPanel>
 		</Border>
-
-		<!--Other-->
-		<Border Width="750" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0, 0, 0, 0" CornerRadius="0" Background="#303030">
-			<TextBlock Margin="5" FontSize="16" HorizontalAlignment="Center" Text="Other"></TextBlock>
-		</Border>
-		<Border BorderBrush="White" BorderThickness="1">
-			<WrapPanel HorizontalAlignment="Center">
-				<StackPanel Margin="5, 5, 5, 5">
-					<TextBlock  Margin="5" FontSize="14" HorizontalAlignment="Center">Priority</TextBlock>
-					<Button FontSize="12" Background="#525252" Name="BS_Realtime" Click="SetPriorityButton" HorizontalAlignment="Center">Beat Saber (Realtime)</Button>
-					<Button FontSize="12" Background="#525252" Name="BS_High" Click="SetPriorityButton" HorizontalAlignment="Center">Beat Saber (High)</Button>
-				</StackPanel>
-			</WrapPanel>
-		</Border>
 		
 		<!--Log-->
 		<DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Margin="0, 70, 0, 0">

@@ -5,7 +5,7 @@ namespace VR_Tools.Functions;
 
 public static class Priority
 {
-    public static LogMessage SetPriority(string processName, string executableName, ProcessPriorityClass priority)
+    public static void SetPriority(string processName, string executableName, ProcessPriorityClass priority)
     {
         string message = "null";
         string type = "ERROR";
@@ -26,6 +26,7 @@ public static class Priority
                 }
             }
         }
-        return new LogMessage(message, type);
+        Log.AddLine(message, type);
+        return;
     }
 }
