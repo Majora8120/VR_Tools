@@ -29,12 +29,6 @@ public partial class MainWindow : Window
             case "OculusDash":
                 Priority.SetPriority("OculusDash", "OculusDash.exe", ProcessPriorityClass.High);
                 break;
-            case "BS_Realtime":
-                Priority.SetPriority("Beat Saber", "Beat Saber.exe", ProcessPriorityClass.RealTime);
-                break;
-            case "BS_High":
-                Priority.SetPriority("Beat Saber", "Beat Saber.exe", ProcessPriorityClass.High);
-                break;
         }
     }
     public void ASWEnable(object sender, RoutedEventArgs args)
@@ -59,6 +53,9 @@ public partial class MainWindow : Window
                 break;
             case "OpenOculusFolder":
                 StartProcess.Explorer(Config.OculusFilePath);
+                break;
+            case "OpenAppFolder":
+                StartProcess.Explorer(@".\");
                 break;
         }
     }

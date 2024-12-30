@@ -13,10 +13,14 @@
 	<StackPanel TextElement.Foreground="#ffffffff">
 		<DockPanel DockPanel.Dock="Top" Background="#242323">
 			<Border Margin="0, 0, 0, 0" CornerRadius="0" Background="#ff698dd4">
-				<TextBlock Margin="5" FontSize="18" HorizontalAlignment="Center" Text="VR Tools by Majora8120"></TextBlock>
+				<TextBlock Margin="5" FontSize="18" HorizontalAlignment="Center" Text="VR Tools"></TextBlock>
 			</Border>
 			
 			<Menu>
+				<MenuItem Header="File">
+					<MenuItem Header="Open App Folder" Name="OpenAppFolder" Click="OpenProgram"></MenuItem>
+				</MenuItem>
+				
 				<MenuItem Header="About" Name="About" Click="AboutWindow"/>
 			</Menu>
 		</DockPanel>

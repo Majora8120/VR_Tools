@@ -1,5 +1,5 @@
 # VR Tools
-Some tools I made that I find useful for VR. **Requires running as administrator to work!**
+Some tools I made that I find useful for VR. **Requires running as administrator to work!**<br/>
 ## Features
 * Change priority of programs to help reduce random stutters on some hardware
 * Disable and re-enable Oculus Application Spacewarp via a registry entry
