@@ -11,6 +11,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        Config.LoadConfigFile();
         DataGrid.ItemsSource = Log.log;
     }
     public void SetPriorityButton(object sender, RoutedEventArgs args)
@@ -57,7 +58,7 @@ public partial class MainWindow : Window
                 StartProcess.Program("OculusDebugTool", @"C:\Program Files\Oculus\Support\oculus-diagnostics\OculusDebugTool.exe");
                 break;
             case "OpenOculusFolder":
-                StartProcess.Explorer(@"C:\Program Files\Oculus\Support");
+                StartProcess.Explorer(Config.OculusFilePath);
                 break;
         }
     }

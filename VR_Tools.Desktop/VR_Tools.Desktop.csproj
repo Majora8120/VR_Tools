@@ -26,4 +26,10 @@
   <ItemGroup>
     <ProjectReference Include="..\VR_Tools\VR_Tools.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

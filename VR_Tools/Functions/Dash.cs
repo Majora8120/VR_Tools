@@ -8,11 +8,10 @@ namespace VR_Tools.Functions;
 
 public static class Dash
 {
-    private const string OculusKillerURL = @"https://github.com/BnuuySolutions/OculusKiller/releases/download/v1.3.0/OculusDash.exe";
-    private const string FullFilePath = @"C:\Program Files\Oculus\Support\oculus-dash\dash\bin\OculusDash.exe";
-    private const string FilePath = @"C:\Program Files\Oculus\Support\oculus-dash\dash\bin\";
-    private const string DashBackup = @"C:\Program Files\Oculus\Support\oculus-dash\dash\bin\OculusDash.exe.bak";
-    private const string KillerBackup = @"C:\Program Files\Oculus\Support\oculus-dash\dash\bin\OculusDash.exe.killer";
+    private static string FullFilePath = Config.OculusFilePath + @"Support\oculus-dash\dash\bin\OculusDash.exe";
+    private static string FilePath = Config.OculusFilePath;
+    private static string DashBackup = Config.OculusFilePath + @"Support\oculus-dash\dash\bin\OculusDash.exe.bak";
+    private static string KillerBackup = Config.OculusFilePath + @"Support\oculus-dash\dash\bin\OculusDash.exe.killer";
 
     public static async Task SwapToSteamVR()
     {
@@ -48,7 +47,7 @@ public static class Dash
         }
         else
         {
-            Stream fileStream = await GetFileStream(OculusKillerURL);
+            Stream fileStream = await GetFileStream(Config.OculusKillerURL);
             if (fileStream != Stream.Null)
             {
                 await SaveFileStream(fileStream);
@@ -102,7 +101,7 @@ public static class Dash
             return null;
         }
         FileInfo fileInfo = new FileInfo(FullFilePath);
-        if (fileInfo.Length < 1000000) // Oculus Killer is less than 1MB in size. Dash is ~32MB
+        if (fileInfo.Length < 5000000) // Oculus Killer is less than 1MB in size. Dash is ~32MB
         {
             return("SteamVR");
         }
