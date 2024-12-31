@@ -134,15 +134,22 @@ public static class Dash
         }
         catch(Exception e)
         {
-            Debug.WriteLine(e);
+            Log.AddLine(e.ToString(), "ERROR");
             return(Stream.Null);
         }
     }
     private static async Task SaveFileStream(Stream fileStream)
     {
-        using (FileStream outputFileStream = new FileStream(FullFilePath, FileMode.CreateNew))
+        try
         {
+            using FileStream outputFileStream = new FileStream(FullFilePath, FileMode.CreateNew);
             await fileStream.CopyToAsync(outputFileStream);
         }
+        catch (Exception e)
+        {
+            Log.AddLine(e.ToString(), "ERROR");
+            return;
+        }
+        return;
     }
 }

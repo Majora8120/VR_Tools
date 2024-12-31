@@ -46,10 +46,10 @@ public partial class MainWindow : Window
         switch (source!.Name)
         {
             case "OpenOculus":
-                StartProcess.Program("OculusClient", @"C:\Program Files\Oculus\Support\oculus-client\OculusClient.exe");
+                StartProcess.Program("OculusClient", Config.OculusFilePath + @"Support\oculus-client\OculusClient.exe");
                 break;
             case "OpenOculusDebug":
-                StartProcess.Program("OculusDebugTool", @"C:\Program Files\Oculus\Support\oculus-diagnostics\OculusDebugTool.exe");
+                StartProcess.Program("OculusDebugTool", Config.OculusFilePath + @"Support\oculus-diagnostics\OculusDebugTool.exe");
                 break;
             case "OpenOculusFolder":
                 StartProcess.Explorer(Config.OculusFilePath);

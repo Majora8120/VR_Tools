@@ -1,5 +1,6 @@
 ﻿#pragma warning disable CA1416 // Validate platform compatibility
 using System.ServiceProcess;
+using System.Linq;
 
 namespace VR_Tools.Functions;
 
@@ -11,6 +12,11 @@ public static class Service
         string message = "null";
         string type = "ERROR";
 
+        if (DoesServiceExist() == false)
+        {
+            Log.AddLine($"{ServiceName} doesn't exist", "ERROR");
+            return;
+        }
         ServiceController sc = new ServiceController(ServiceName);
         if (sc.Status == ServiceControllerStatus.Stopped | sc.Status == ServiceControllerStatus.StopPending)
         {
@@ -32,6 +38,11 @@ public static class Service
         string message = "null";
         string type = "ERROR";
 
+        if (DoesServiceExist() == false)
+        {
+            Log.AddLine($"{ServiceName} doesn't exist", "ERROR");
+            return;
+        }
         ServiceController sc = new ServiceController(ServiceName);
         if (sc.Status == ServiceControllerStatus.Running | sc.Status == ServiceControllerStatus.StartPending)
         {
@@ -47,5 +58,18 @@ public static class Service
             return;
         }
         return;
+    }
+    public static bool DoesServiceExist()
+    {
+        ServiceController[] services = ServiceController.GetServices();
+        var sc = services.FirstOrDefault(s => s.ServiceName == ServiceName);
+        if (sc != null) 
+        { 
+            return(true); 
+        }
+        else 
+        { 
+            return(false); 
+        }
     }
 }
