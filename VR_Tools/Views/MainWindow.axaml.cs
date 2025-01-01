@@ -87,7 +87,12 @@ public partial class MainWindow : Window
                 break;
         }
     }
-    public void AboutWindow(object source, RoutedEventArgs args)
+    public void RegenConfig(object sender, RoutedEventArgs args)
+    {
+        Config.GenerateConfigFile();
+        Config.LoadConfigFile();
+    }
+    public void AboutWindow(object sender, RoutedEventArgs args)
     {
         var window = new AboutWindow();
         window.ShowDialog(this);

@@ -19,6 +19,7 @@
 			<Menu>
 				<MenuItem Header="File">
 					<MenuItem Header="Open App Folder" Name="OpenAppFolder" Click="OpenProgram"></MenuItem>
+					<MenuItem Header="Regen Config File" Click="RegenConfig"></MenuItem>
 				</MenuItem>
 				
 				<MenuItem Header="About" Name="About" Click="AboutWindow"/>

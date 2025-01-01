@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace VR_Tools;
 
@@ -24,10 +25,10 @@ public static class Config
             return;
         }
 
-        if (config.SelectSingleNode("XML/OculusLinkInstallPath") != null && config.SelectSingleNode("XML/OculusKillerURL") != null)
+        if (config.SelectSingleNode("xml/OculusLinkInstallPath") != null && config.SelectSingleNode("xml/OculusKillerURL") != null)
         {
-            OculusFilePath = config.SelectSingleNode("XML/OculusLinkInstallPath")!.InnerText;
-            OculusKillerURL = config.SelectSingleNode("XML/OculusKillerURL")!.InnerText;
+            OculusFilePath = config.SelectSingleNode("xml/OculusLinkInstallPath")!.InnerText;
+            OculusKillerURL = config.SelectSingleNode("xml/OculusKillerURL")!.InnerText;
         }
         else
         {
@@ -35,6 +36,15 @@ public static class Config
             return;
         }
         Log.AddLine("Loaded config file", "INFO");
+        return;
+    }
+    public static void GenerateConfigFile()
+    {
+        XDocument config = new XDocument(new XElement("xml", 
+            new XElement("OculusLinkInstallPath", DefaultOculusFilePath), 
+            new XElement("OculusKillerURL", DefaultOculusKillerURL)));
+        config.Save(@".\config.xml");
+        Log.AddLine("Regenerated config file", "INFO");
         return;
     }
 }
