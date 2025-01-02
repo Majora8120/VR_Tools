@@ -12,13 +12,16 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
+	
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
 	 <DebugSymbols>False</DebugSymbols>
 	 <DebugType>None</DebugType>
   </PropertyGroup>
+	
   <ItemGroup>
     <Content Include="Icon.ico" />
   </ItemGroup>
+	
   <ItemGroup>
     <PackageReference Include="Avalonia.Desktop" Version="11.2.3" />
   </ItemGroup>
