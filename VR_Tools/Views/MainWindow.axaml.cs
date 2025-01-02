@@ -13,6 +13,12 @@ public partial class MainWindow : Window
         InitializeComponent();
         Config.LoadConfigFile();
         DataGrid.ItemsSource = Log.log;
+
+#if DEBUG
+        Title.Text = "VR Tools vDebug";
+#else
+        Title.Text = "VR Tools v0.1";
+#endif
     }
     public void SetPriorityButton(object sender, RoutedEventArgs args)
     {
