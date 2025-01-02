@@ -11,81 +11,75 @@ public static class Dash
     private static string FullFilePath = Config.OculusFilePath + @"Support\oculus-dash\dash\bin\OculusDash.exe";
     private static string FilePath = Config.OculusFilePath;
     private static string DashBackup = Config.OculusFilePath + @"Support\oculus-dash\dash\bin\OculusDash.exe.bak";
-    private static string KillerBackup = Config.OculusFilePath + @"Support\oculus-dash\dash\bin\OculusDash.exe.killer";
+    //private static string KillerBackup = Config.OculusFilePath + @"Support\oculus-dash\dash\bin\OculusDash.exe.killer";
 
     public static async Task SwapToSteamVR()
     {
-        string message = "null";
-        string type = "ERROR";
         string? currentDash = GetCurrentDash();
 
         if (IsDashRunning() == true)
         {
-            (message, type) = ("Close Oculus Dash and SteamVR!!!", "ERROR");
-            Log.AddLine(message, type);
+            Log.AddLine("Close Oculus Dash and/or SteamVR!!!", "ERROR");
             return;
         }
-
         if (currentDash == "SteamVR")
         {
-            (message, type) = ("Oculus Killer already installed", "ERROR");
-            Log.AddLine(message, type);
+            Log.AddLine("Oculus Killer already installed", "ERROR");
             return;
         }
         if (currentDash == null)
         {
             return;
         }
-        File.Move(FullFilePath, DashBackup);
 
-        if (File.Exists(KillerBackup) == true)
+        try
         {
-            File.Move(KillerBackup, FullFilePath);
-            (message, type) = ("Oculus Killer installed", "INFO");
-            Log.AddLine(message, type);
+            File.Move(FullFilePath, DashBackup);
+        }
+        catch (Exception e)
+        {
+            Log.AddLine(e.ToString(), "ERROR");
             return;
         }
-        else
+
+        Stream fileStream = await GetFileStream(Config.OculusKillerURL);
+        if (fileStream != Stream.Null)
         {
-            Stream fileStream = await GetFileStream(Config.OculusKillerURL);
-            if (fileStream != Stream.Null)
-            {
-                await SaveFileStream(fileStream);
-                (message, type) = ("Oculus Killer installed", "INFO");
-                Log.AddLine(message, type);
-                return;
-            }
+            await SaveFileStream(fileStream);
+            Log.AddLine("Oculus Killer installed", "INFO");
+            return;
         }
         return;
     }
     public static void SwapToOculusDash()
     {
-        string message = "null";
-        string type = "ERROR";
         string? currentDash = GetCurrentDash();
 
         if (IsDashRunning() == true)
         {
-            (message, type) = ("Close OculusDash and SteamVR!!!", "ERROR");
-            Log.AddLine(message, type);
+            Log.AddLine("Close OculusDash and SteamVR!!!", "ERROR");
             return;
         }
-
         if (currentDash == "OculusDash")
         {
-            (message, type) = ("Oculus Dash already installed", "ERROR");
-            Log.AddLine(message, type);
+            Log.AddLine("Oculus Dash already installed", "ERROR");
             return;
         }
         if (currentDash == null)
         {
             return;
         }
-        File.Move(FullFilePath, KillerBackup);
 
-        File.Move(DashBackup, FullFilePath);
-        (message, type) = ("Oculus Dash restored", "INFO");
-        Log.AddLine(message, type);
+        try
+        {
+            File.Replace(DashBackup, FullFilePath, null);
+        }
+        catch (Exception e)
+        {
+            Log.AddLine(e.ToString(), "ERROR");
+            return;
+        }
+        Log.AddLine("Oculus Dash restored", "INFO");
         return;
     }
     private static string? GetCurrentDash()

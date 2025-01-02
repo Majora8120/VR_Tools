@@ -8,7 +8,7 @@ public static class Config
 {
     // Default values
     private const string DefaultOculusFilePath = @"C:\Program Files\Oculus\";
-    private const string DefaultOculusKillerURL = @"https://github.com/BnuuySolutions/OculusKiller/releases/download/v1.3.0/OculusDash.exe";
+    private const string DefaultOculusKillerURL = @"https://github.com/BnuuySolutions/OculusKiller/releases/latest/download/OculusDash.exe";
     // Global values
     public static string OculusFilePath = DefaultOculusFilePath;
     public static string OculusKillerURL = DefaultOculusKillerURL;

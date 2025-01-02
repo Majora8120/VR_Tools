@@ -9,9 +9,6 @@ public static class Service
     private const string ServiceName = "OVRService";
     public static void StartService()
     {
-        string message = "null";
-        string type = "ERROR";
-
         if (DoesServiceExist() == false)
         {
             Log.AddLine($"{ServiceName} doesn't exist", "ERROR");
@@ -21,23 +18,18 @@ public static class Service
         if (sc.Status == ServiceControllerStatus.Stopped | sc.Status == ServiceControllerStatus.StopPending)
         {
             sc.Start();
-            (message, type) = ("Service Started", "INFO");
-            Log.AddLine(message, type);
+            Log.AddLine("Service Started", "INFO");
             return;
         }
         else if (sc.Status == ServiceControllerStatus.StartPending | sc.Status == ServiceControllerStatus.Running)
         {
-            (message, type) = ("Service is already running", "ERROR");
-            Log.AddLine(message, type);
+            Log.AddLine("Service is already running", "ERROR");
             return;
         }
         return;
     }
     public static void StopService()
     {
-        string message = "null";
-        string type = "ERROR";
-
         if (DoesServiceExist() == false)
         {
             Log.AddLine($"{ServiceName} doesn't exist", "ERROR");
@@ -47,14 +39,12 @@ public static class Service
         if (sc.Status == ServiceControllerStatus.Running | sc.Status == ServiceControllerStatus.StartPending)
         {
             sc.Stop();
-            (message, type) = ("Service Stopped", "INFO");
-            Log.AddLine(message, type);
+            Log.AddLine("Service Stopped", "INFO");
             return;
         }
         else if (sc.Status == ServiceControllerStatus.Stopped | sc.Status == ServiceControllerStatus.StopPending)
         {
-            (message, type) = ("Service is already stopped", "ERROR");
-            Log.AddLine(message, type);
+            Log.AddLine("Service is already stopped", "ERROR");
             return;
         }
         return;
