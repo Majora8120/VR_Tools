@@ -8,10 +8,11 @@ namespace VR_Tools.Functions;
 
 public static class Dash
 {
-    private static string FullFilePath = Config.OculusFilePath + @"Support\oculus-dash\dash\bin\OculusDash.exe";
-    private static string FilePath = Config.OculusFilePath;
-    private static string DashBackup = Config.OculusFilePath + @"Support\oculus-dash\dash\bin\OculusDash.exe.bak";
-    //private static string KillerBackup = Config.OculusFilePath + @"Support\oculus-dash\dash\bin\OculusDash.exe.killer";
+    private static readonly string FullFilePath = Config.OculusFilePath + @"Support\oculus-dash\dash\bin\OculusDash.exe";
+    private static readonly string FilePath = Config.OculusFilePath;
+    private static readonly string DashBackup = Config.OculusFilePath + @"Support\oculus-dash\dash\bin\OculusDash.exe.bak";
+    private static readonly string DownloadPath = @".\OculusDash.exe";
+    //private static string OculusKillerBackup = Config.OculusFilePath + @"Support\oculus-dash\dash\bin\OculusDash.exe.killer";
 
     public static async Task SwapToSteamVR()
     {
@@ -32,20 +33,20 @@ public static class Dash
             return;
         }
 
-        try
-        {
-            File.Move(FullFilePath, DashBackup);
-        }
-        catch (Exception e)
-        {
-            Log.AddLine(e.ToString(), "ERROR");
-            return;
-        }
-
         Stream fileStream = await GetFileStream(Config.OculusKillerURL);
         if (fileStream != Stream.Null)
         {
             await SaveFileStream(fileStream);
+            try
+            {
+                File.Move(FullFilePath, DashBackup);
+                File.Move(DownloadPath, FullFilePath);
+            }
+            catch (Exception e)
+            {
+                Log.AddLine(e.ToString(), "ERROR");
+                return;
+            }
             Log.AddLine("Oculus Killer installed", "INFO");
             return;
         }
@@ -136,7 +137,7 @@ public static class Dash
     {
         try
         {
-            using FileStream outputFileStream = new FileStream(FullFilePath, FileMode.CreateNew);
+            using FileStream outputFileStream = new FileStream(DownloadPath, FileMode.CreateNew);
             await fileStream.CopyToAsync(outputFileStream);
         }
         catch (Exception e)

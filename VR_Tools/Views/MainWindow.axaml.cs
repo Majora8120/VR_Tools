@@ -17,7 +17,7 @@ public partial class MainWindow : Window
 #if DEBUG
         Title.Text = "VR Tools vDebug";
 #else
-        Title.Text = "VR Tools v0.1";
+        Title.Text = "VR Tools v1.0.0";
 #endif
     }
     public void SetPriorityButton(object sender, RoutedEventArgs args)
