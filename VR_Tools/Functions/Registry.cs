@@ -1,52 +1,127 @@
 ﻿#pragma warning disable CA1416 // Validate platform compatibility
+using System;
 using Microsoft.Win32;
 
 namespace VR_Tools.Functions;
 
 public static class Registry
 {
-    public static void EditRegistry(bool disableASW)
+    // A lot of this is unused for now
+    public static void CreateSubKey(string keyPath)
     {
-        string message = "null";
-        string type = "ERROR";
-
-        if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Oculus") is null)
+        if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyPath) == null)
         {
-            (message, type) = (@"HKEY_LOCAL_MACHINE\SOFTWARE\Oculus is null", "ERROR");
-        }
-        else if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Oculus") is not null)
-        {
-            RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Oculus", true)!;
-            switch (disableASW)
+            try
             {
-                case true:
-                    if (key.GetValue("AswDisabled")?.ToString() is not "1")
-                    {
-                        key.SetValue(@"AswDisabled", 1, RegistryValueKind.DWord);
-
-                        (message, type) = ("Registry value created", "INFO");
-                    }
-                    else
-                    {
-                        (message, type) = ("Registry value already exists", "ERROR");
-                    }
-                    break;
-                case false:
-                    if (key.GetValue("AswDisabled")?.ToString() is not null)
-                    {
-                        key.DeleteValue("AswDisabled");
-
-                        (message, type) = ("Registry value deleted", "INFO");
-                    }
-                    else
-                    {
-                        (message, type) = ("Registry value doesn't exist", "ERROR");
-                    }
-                    break;
+                Microsoft.Win32.Registry.LocalMachine.CreateSubKey(keyPath);
             }
-            key.Close();
+            catch (Exception e)
+            {
+                Log.AddLine(e.ToString(), "ERROR");
+                return;
+            }
+            Log.AddLine($"SubKey created {keyPath}", "INFO");
+            return;
         }
-        Log.AddLine(message, type);
-        return;
+        else
+        {
+            Log.AddLine("SubKey already exists", "ERROR");
+            return;
+        }
+    }
+    public static void DeleteSubKeyTree(string keyPath) // For debug use only
+    {
+        if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyPath) != null)
+        {
+            try
+            {
+                Microsoft.Win32.Registry.LocalMachine.DeleteSubKeyTree(keyPath);
+            }
+            catch (Exception e)
+            {
+                Log.AddLine(e.ToString(), "ERROR");
+                return;
+            }
+            Log.AddLine($"SubKey {keyPath} and children deleted", "INFO");
+            return;
+        }
+        else
+        {
+            Log.AddLine("SubKey doesn't exist", "ERROR");
+            return;
+        }
+    }
+    public static bool DoesSubKeyExist(string keyPath)
+    {
+        if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyPath) != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public static bool DoesValueExist(string keyPath, string value)
+    {
+        RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyPath, false)!;
+        if (key.GetValue(value) != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public static void CreateValue(string keyPath, string name, object value, Microsoft.Win32.RegistryValueKind registryValueKind)
+    {
+        if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyPath) != null)
+        {
+            RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyPath, true)!;
+            if (key.GetValue(name) != value)
+            {
+                key.SetValue(name, value, registryValueKind);
+                key.Close();
+                Log.AddLine("Registry value created", "INFO");
+                return;
+            }
+            else
+            {
+                key.Close();
+                Log.AddLine("Registry value already exists", "ERROR");
+                return;
+            }
+        }
+        else
+        {
+            Log.AddLine("SubKey doesn't exist", "ERROR");
+            return;
+        }
+    }
+    public static void DeleteValue(string keyPath, string name)
+    {
+        if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyPath) != null)
+        {
+            RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyPath, true)!;
+            if (key.GetValue(name) != null)
+            {
+                key.DeleteValue(name);
+                key.Close();
+                Log.AddLine("Registry value deleted", "INFO");
+                return;
+            }
+            else
+            {
+                key.Close();
+                Log.AddLine("Registry value doesn't exist", "ERROR");
+                return;
+            }
+        }
+        else
+        {
+            Log.AddLine("SubKey doesn't exist", "ERROR");
+            return;
+        }
     }
 }

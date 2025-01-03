@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿#pragma warning disable CA1416 // Validate platform compatibility
+using Avalonia.Controls;
 using Avalonia.Interactivity;
 using System.Diagnostics;
 using VR_Tools.Functions;
@@ -27,23 +28,26 @@ public partial class MainWindow : Window
         switch (source!.Name)
         {
             case "OVRServer_x64":
-                Priority.SetPriority("OVRServer_x64", "OVRServer_x64.exe", ProcessPriorityClass.RealTime);
-                break;
-            case "OVRRedir":
-                Priority.SetPriority("OVRRedir", "OVRRedir.exe", ProcessPriorityClass.RealTime);
+                Priority.SetPriority("OVRServer_x64", "OVRServer_x64.exe", ProcessPriorityClass.High);
                 break;
             case "OculusDash":
-                Priority.SetPriority("OculusDash", "OculusDash.exe", ProcessPriorityClass.High);
+                Priority.SetPriority("OculusDash", "OculusDash.exe", ProcessPriorityClass.AboveNormal);
                 break;
         }
     }
-    public void ASWEnable(object sender, RoutedEventArgs args)
+    public void EditRegistry(object sender, RoutedEventArgs args)
     {
-        Registry.EditRegistry(false);
-    }
-    public void ASWDisable(object sender, RoutedEventArgs args)
-    {
-        Registry.EditRegistry(true);
+        var source = args.Source as Control;
+
+        switch (source!.Name)
+        {
+            case "ASWEnable":
+                Registry.DeleteValue(@"SOFTWARE\Oculus", "AswDisabled");
+                break;
+            case "ASWDisable":
+                Registry.CreateValue(@"SOFTWARE\Oculus", "AswDisabled", 1, Microsoft.Win32.RegistryValueKind.DWord);
+                break;
+        }
     }
     public void OpenProgram(object sender, RoutedEventArgs args)
     {

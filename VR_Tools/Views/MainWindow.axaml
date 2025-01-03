@@ -23,6 +23,10 @@
 				</MenuItem>
 				
 				<MenuItem Header="About" Name="About" Click="AboutWindow"/>
+
+				<MenuItem Header="Debug" Name="Debug" IsVisible="False">
+					
+				</MenuItem>
 			</Menu>
 		</DockPanel>
 
@@ -34,15 +38,14 @@
 			<WrapPanel HorizontalAlignment="Center">
 				<StackPanel Margin="5, 5, 5, 5" Background="#ff272c30">
 					<TextBlock  Margin="5" FontSize="14" HorizontalAlignment="Center">Priority</TextBlock>
-					<Button FontSize="12" Background="#525252" Name="OVRServer_x64" Click="SetPriorityButton" HorizontalAlignment="Center">OVRServer (Realtime)</Button>
-					<Button FontSize="12" Background="#525252" Name="OVRRedir" Click="SetPriorityButton" HorizontalAlignment="Center">OVRRedir (Realtime)</Button>
-					<Button FontSize="12" Background="#525252" Name="OculusDash" Click="SetPriorityButton" HorizontalAlignment="Center">Oculus Dash (High)</Button>
+					<Button FontSize="12" Background="#525252" Name="OVRServer_x64" Click="SetPriorityButton" HorizontalAlignment="Center">OVRServer__x64 (H)</Button>
+					<Button FontSize="12" Background="#525252" Name="OculusDash" Click="SetPriorityButton" HorizontalAlignment="Center">Oculus Dash (AN)</Button>
 				</StackPanel>
 
 				<StackPanel Margin="5, 5, 5, 5">
 					<TextBlock Margin="5" FontSize="14" HorizontalAlignment="Center">Oculus PC ASW</TextBlock>
-					<Button FontSize="12" Background="#525252" Click="ASWEnable" HorizontalAlignment="Center">Enable ASW</Button>
-					<Button FontSize="12" Background="#525252" Click="ASWDisable" HorizontalAlignment="Center">Disable ASW</Button>
+					<Button FontSize="12" Background="#525252" Name="ASWEnable" Click="EditRegistry" HorizontalAlignment="Center">Enable ASW</Button>
+					<Button FontSize="12" Background="#525252" Name="ASWDisable" Click="EditRegistry" HorizontalAlignment="Center">Disable ASW</Button>
 				</StackPanel>
 
 				<StackPanel Margin="5, 5, 5, 5">
