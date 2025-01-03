@@ -66,17 +66,17 @@
 			</WrapPanel>
 		</Border>
 		
-		<!--Log-->
+		<!--Log | Old color DarkKhaki-->
 		<DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Margin="0, 70, 0, 0">
 			<StackPanel>
-				<Border Width="" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Margin="0" CornerRadius="0" Background="DarkKhaki">
-					<TextBlock Margin="5" FontSize="16" HorizontalAlignment="Left" Text="Log"></TextBlock>
+				<Border Width="750" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0" CornerRadius="0" Background="#303030">
+					<TextBlock Margin="5" FontSize="16" HorizontalAlignment="Center" Text="Log"></TextBlock>
 				</Border>
 				
 				<DataGrid x:Name="DataGrid"
 				AutoGenerateColumns="False" IsReadOnly="True"
 				GridLinesVisibility="All" HeadersVisibility="None"
-				BorderThickness="1" BorderBrush="Gray"
+				BorderThickness="1" BorderBrush="White"
 				Height="140" RowHeight="30" Width="750">
 					<DataGrid.Columns>
 						<DataGridTextColumn Width="65" Binding="{Binding Type}" FontSize="12"/>
