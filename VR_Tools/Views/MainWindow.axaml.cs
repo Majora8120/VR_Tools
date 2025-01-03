@@ -15,9 +15,9 @@ public partial class MainWindow : Window
         DataGrid.ItemsSource = Log.log;
 
 #if DEBUG
-        Title.Text = "VR Tools vDebug";
+        ProgramTitle.Text = "VR Tools vDebug";
 #else
-        Title.Text = "VR Tools v1.0.0";
+        ProgramTitle.Text = "VR Tools v1.0.0";
 #endif
     }
     public void SetPriorityButton(object sender, RoutedEventArgs args)

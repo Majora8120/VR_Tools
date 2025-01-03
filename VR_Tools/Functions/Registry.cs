@@ -1,6 +1,5 @@
 ﻿#pragma warning disable CA1416 // Validate platform compatibility
 using Microsoft.Win32;
-using System;
 
 namespace VR_Tools.Functions;
 
@@ -17,7 +16,7 @@ public static class Registry
         }
         else if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Oculus") is not null)
         {
-            RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Oculus", true) ?? throw new ArgumentNullException(nameof(key), "How TF is this null!");
+            RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Oculus", true)!;
             switch (disableASW)
             {
                 case true:
