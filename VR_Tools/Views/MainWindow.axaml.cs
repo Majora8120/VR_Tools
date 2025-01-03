@@ -11,7 +11,14 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        Config.LoadConfigFile();
         DataGrid.ItemsSource = Log.log;
+
+#if DEBUG
+        ProgramTitle.Text = "VR Tools vDebug";
+#else
+        ProgramTitle.Text = "VR Tools v1.0.0";
+#endif
     }
     public void SetPriorityButton(object sender, RoutedEventArgs args)
     {
@@ -27,12 +34,6 @@ public partial class MainWindow : Window
                 break;
             case "OculusDash":
                 Priority.SetPriority("OculusDash", "OculusDash.exe", ProcessPriorityClass.High);
-                break;
-            case "BS_Realtime":
-                Priority.SetPriority("Beat Saber", "Beat Saber.exe", ProcessPriorityClass.RealTime);
-                break;
-            case "BS_High":
-                Priority.SetPriority("Beat Saber", "Beat Saber.exe", ProcessPriorityClass.High);
                 break;
         }
     }
@@ -51,13 +52,16 @@ public partial class MainWindow : Window
         switch (source!.Name)
         {
             case "OpenOculus":
-                StartProcess.Program("OculusClient", @"C:\Program Files\Oculus\Support\oculus-client\OculusClient.exe");
+                StartProcess.Program("OculusClient", Config.OculusFilePath + @"Support\oculus-client\OculusClient.exe");
                 break;
             case "OpenOculusDebug":
-                StartProcess.Program("OculusDebugTool", @"C:\Program Files\Oculus\Support\oculus-diagnostics\OculusDebugTool.exe");
+                StartProcess.Program("OculusDebugTool", Config.OculusFilePath + @"Support\oculus-diagnostics\OculusDebugTool.exe");
                 break;
             case "OpenOculusFolder":
-                StartProcess.Explorer(@"C:\Program Files\Oculus\Support");
+                StartProcess.Explorer(Config.OculusFilePath);
+                break;
+            case "OpenAppFolder":
+                StartProcess.Explorer(@".\");
                 break;
         }
     }
@@ -89,7 +93,12 @@ public partial class MainWindow : Window
                 break;
         }
     }
-    public void AboutWindow(object source, RoutedEventArgs args)
+    public void RegenConfig(object sender, RoutedEventArgs args)
+    {
+        Config.GenerateConfigFile();
+        Config.LoadConfigFile();
+    }
+    public void AboutWindow(object sender, RoutedEventArgs args)
     {
         var window = new AboutWindow();
         window.ShowDialog(this);

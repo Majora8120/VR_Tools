@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+  <ConfigVersion>1.0</ConfigVersion>
+  <OculusLinkInstallPath>C:\Program Files\Oculus\</OculusLinkInstallPath>
+  <OculusKillerURL>https://github.com/BnuuySolutions/OculusKiller/releases/latest/download/OculusDash.exe</OculusKillerURL>
+</xml>

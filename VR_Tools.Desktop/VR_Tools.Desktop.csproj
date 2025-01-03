@@ -3,27 +3,36 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <PublishSingleFile>true</PublishSingleFile>
-    <SelfContained>False</SelfContained>
-    <PublishTrimmed>False</PublishTrimmed>
-    <PublishReadyToRun>true</PublishReadyToRun>
+    <SelfContained Condition="'$(Configuration)'=='Release'">true</SelfContained>
+    <PublishTrimmed>false</PublishTrimmed>
+    <PublishReadyToRun>false</PublishReadyToRun>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <Nullable>enable</Nullable>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
+	
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
 	 <DebugSymbols>False</DebugSymbols>
 	 <DebugType>None</DebugType>
   </PropertyGroup>
+	
   <ItemGroup>
     <Content Include="Icon.ico" />
   </ItemGroup>
+	
   <ItemGroup>
     <PackageReference Include="Avalonia.Desktop" Version="11.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\VR_Tools\VR_Tools.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
