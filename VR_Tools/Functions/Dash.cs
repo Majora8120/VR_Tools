@@ -20,7 +20,7 @@ public static class Dash
 
         if (IsDashRunning() == true)
         {
-            Log.AddLine("Close Oculus Dash and/or SteamVR!!!", "ERROR");
+            Log.AddLine("Close Oculus Dash and/or SteamVR!", "ERROR");
             return;
         }
         if (currentDash == "SteamVR")
@@ -58,7 +58,7 @@ public static class Dash
 
         if (IsDashRunning() == true)
         {
-            Log.AddLine("Close OculusDash and SteamVR!!!", "ERROR");
+            Log.AddLine("Close OculusDash and/or SteamVR!", "ERROR");
             return;
         }
         if (currentDash == "OculusDash")
@@ -87,12 +87,12 @@ public static class Dash
     {
         if (Directory.Exists(FilePath) == false)
         {
-            Log.AddLine("Directory doesn't exist. Is Oculus Link installed?", "ERROR");
+            Log.AddLine("Directory doesn't exist", "ERROR");
             return null;
         }
         if (File.Exists(FullFilePath) == false)
         {
-            Log.AddLine("OculusDash.exe doesn't exist?", "ERROR");
+            Log.AddLine("OculusDash.exe doesn't exist", "ERROR");
             return null;
         }
         FileInfo fileInfo = new FileInfo(FullFilePath);

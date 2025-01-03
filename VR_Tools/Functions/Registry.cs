@@ -13,7 +13,7 @@ public static class Registry
 
         if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Oculus") is null)
         {
-            (message, type) = (@"HKEY_LOCAL_MACHINE\SOFTWARE\Oculus is null. Is Oculus Link installed?", "ERROR");
+            (message, type) = (@"HKEY_LOCAL_MACHINE\SOFTWARE\Oculus is null", "ERROR");
         }
         else if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Oculus") is not null)
         {

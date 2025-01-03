@@ -44,7 +44,7 @@ public static class Service
         }
         else if (sc.Status == ServiceControllerStatus.Stopped | sc.Status == ServiceControllerStatus.StopPending)
         {
-            Log.AddLine("Service is already stopped", "ERROR");
+            Log.AddLine("Service is not running", "ERROR");
             return;
         }
         return;
