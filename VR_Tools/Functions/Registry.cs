@@ -79,7 +79,7 @@ public static class Registry
         if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyPath) != null)
         {
             RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyPath, true)!;
-            if (key.GetValue(name) != value)
+            if (key.GetValue(name) == null)
             {
                 key.SetValue(name, value, registryValueKind);
                 key.Close();
