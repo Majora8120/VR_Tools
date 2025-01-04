@@ -4,7 +4,7 @@ A collection of useful tools for VR. Mainly focused towards Oculus headsets
 1. A custom Oculus software install path and [Oculus Killer](https://github.com/BnuuySolutions/OculusKiller) source can be configured in config.xml
 2. This application requires running as administrator to function
 ## Features
-* Change priority of programs to help reduce random stutters on some hardware
+* Change priority of programs to help reduce random stutters/lag on some hardware
 * Disable and re-enable Oculus Application Spacewarp via a registry entry
 * Switch between Oculus Dash and [Oculus Killer](https://github.com/BnuuySolutions/OculusKiller)
 * Start and stop Oculus service

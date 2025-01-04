@@ -16,9 +16,10 @@ public partial class MainWindow : Window
         DataGrid.ItemsSource = Log.log;
 
 #if DEBUG
-        ProgramTitle.Text = "VR Tools vDebug";
+        TitleBar.Text = "VR Tools vDebug";
+        MenuBar_Debug.IsVisible = true;
 #else
-        ProgramTitle.Text = "VR Tools v1.0.0";
+        TitleBar.Text = "VR Tools v1.0.0";
 #endif
     }
     public void SetPriorityButton(object sender, RoutedEventArgs args)
@@ -101,6 +102,10 @@ public partial class MainWindow : Window
     {
         Config.GenerateConfigFile();
         Config.LoadConfigFile();
+    }
+    public void ClearLog(object sender, RoutedEventArgs args)
+    {
+        Log.log.Clear();
     }
     public void AboutWindow(object sender, RoutedEventArgs args)
     {
