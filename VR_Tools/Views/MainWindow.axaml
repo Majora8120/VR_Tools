@@ -26,6 +26,7 @@
 
 				<MenuItem Header="Debug" Name="MenuBar_Debug" IsVisible="False">
 					<MenuItem Header="Clear Log" Click="ClearLog"/>
+					<MenuItem Header="Refresh Status" Click="RefreshStatus"/>
 				</MenuItem>
 			</Menu>
 		</DockPanel>
@@ -33,6 +34,9 @@
 		<!--Oculus | Old color #ff00ca9a-->
 		<Border Width="750" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0, 0, 0, 0" CornerRadius="0" Background="#303030">
 			<TextBlock Margin="5" FontSize="16" HorizontalAlignment="Center" Text="Oculus"/>
+		</Border>
+		<Border Width="750" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0, 0, 0, 0" CornerRadius="0" Background="#303030">
+			<Label Margin="0" FontSize="14" HorizontalAlignment="Center" Name="OculusStatus"/>
 		</Border>
 		<Border BorderBrush="White" BorderThickness="1">
 			<WrapPanel HorizontalAlignment="Center">

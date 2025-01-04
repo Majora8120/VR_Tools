@@ -1,6 +1,7 @@
 ﻿#pragma warning disable CA1416 // Validate platform compatibility
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using VR_Tools.Functions;
 
@@ -8,7 +9,6 @@ namespace VR_Tools.Views;
 
 public partial class MainWindow : Window
 {
-    
     public MainWindow()
     {
         InitializeComponent();
@@ -18,6 +18,7 @@ public partial class MainWindow : Window
 #if DEBUG
         TitleBar.Text = "VR Tools vDebug";
         MenuBar_Debug.IsVisible = true;
+        UpdateStatus();
 #else
         TitleBar.Text = "VR Tools v1.0.0";
 #endif
@@ -49,6 +50,7 @@ public partial class MainWindow : Window
                 Registry.CreateValue(@"SOFTWARE\Oculus", "AswDisabled", 1, Microsoft.Win32.RegistryValueKind.DWord);
                 break;
         }
+        UpdateStatus();
     }
     public void OpenProgram(object sender, RoutedEventArgs args)
     {
@@ -83,6 +85,7 @@ public partial class MainWindow : Window
                 Dash.SwapToOculusDash();
                 break;
         }
+        UpdateStatus();
     }
     public void ServiceButton(object sender, RoutedEventArgs args)
     {
@@ -97,6 +100,7 @@ public partial class MainWindow : Window
                 Service.StopService();
                 break;
         }
+        UpdateStatus();
     }
     public void RegenConfig(object sender, RoutedEventArgs args)
     {
@@ -107,9 +111,27 @@ public partial class MainWindow : Window
     {
         Log.log.Clear();
     }
+    public void RefreshStatus(object sender, RoutedEventArgs args)
+    {
+        UpdateStatus();
+    }
     public void AboutWindow(object sender, RoutedEventArgs args)
     {
         var window = new AboutWindow();
         window.ShowDialog(this);
+    }
+    public void UpdateStatus()
+    {
+        string asw = "";
+        if (Registry.DoesValueExist(@"SOFTWARE\Oculus", "AswDisabled") == true)
+        { asw = "Disabled"; }
+        else 
+        { asw = "Enabled"; }
+
+        string dash = Dash.GetCurrentDash();
+
+        string service = Service.ServiceStatus();
+            
+        OculusStatus.SetValue(Label.ContentProperty, $"ASW = {asw} | Dash = {dash} | Service = {service}");
     }
 }

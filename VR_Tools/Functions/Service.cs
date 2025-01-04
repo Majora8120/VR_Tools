@@ -62,4 +62,22 @@ public static class Service
             return(false); 
         }
     }
+    public static string ServiceStatus()
+    {
+        if (DoesServiceExist() == false)
+        {
+            Log.AddLine($"{ServiceName} doesn't exist", "ERROR");
+            return "null";
+        }
+        ServiceController sc = new ServiceController(ServiceName);
+        if (sc.Status == ServiceControllerStatus.Running | sc.Status == ServiceControllerStatus.StartPending)
+        {
+            return ServiceControllerStatus.Running.ToString();
+        }
+        else if (sc.Status == ServiceControllerStatus.Stopped | sc.Status == ServiceControllerStatus.StopPending)
+        {
+            return ServiceControllerStatus.Stopped.ToString();
+        }
+        return sc.Status.ToString();
+    }
 }
