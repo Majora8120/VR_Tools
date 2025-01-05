@@ -8,17 +8,18 @@ namespace VR_Tools.Views;
 
 public partial class MainWindow : Window
 {
-    
     public MainWindow()
     {
         InitializeComponent();
         Config.LoadConfigFile();
         DataGrid.ItemsSource = Log.log;
+        UpdateStatus();
 
 #if DEBUG
-        ProgramTitle.Text = "VR Tools vDebug";
+        TitleBar.Text = "VR Tools vDebug";
+        MenuBar_Debug.IsVisible = true;
 #else
-        ProgramTitle.Text = "VR Tools v1.0.0";
+        TitleBar.Text = "VR Tools v1.0.0";
 #endif
     }
     public void SetPriorityButton(object sender, RoutedEventArgs args)
@@ -48,6 +49,40 @@ public partial class MainWindow : Window
                 Registry.CreateValue(@"SOFTWARE\Oculus", "AswDisabled", 1, Microsoft.Win32.RegistryValueKind.DWord);
                 break;
         }
+        UpdateStatus();
+    }
+    public async void SwitchDash(object sender, RoutedEventArgs args)
+    {
+        var source = args.Source as Control;
+
+        switch (source!.Name)
+        {
+            case "DashSteamVR":
+                await Dash.SwapToSteamVR();
+                break;
+            case "DashOculus":
+                Dash.SwapToOculusDash();
+                break;
+        }
+        UpdateStatus();
+    }
+    public void ServiceButton(object sender, RoutedEventArgs args)
+    {
+        var source = args.Source as Control;
+
+        switch (source!.Name)
+        {
+            case "StartService":
+                Service.StartService("OVRService");
+                break;
+            case "StopService":
+                Service.StopService("OVRService");
+                break;
+            case "RestartService":
+                Service.RestartService("OVRService");
+                break;
+        }
+        UpdateStatus();
     }
     public void OpenProgram(object sender, RoutedEventArgs args)
     {
@@ -69,42 +104,36 @@ public partial class MainWindow : Window
                 break;
         }
     }
-    public async void SwitchDash(object sender, RoutedEventArgs args)
-    {
-        var source = args.Source as Control;
-
-        switch (source!.Name)
-        {
-            case "DashSteamVR":
-                await Dash.SwapToSteamVR();
-                break;
-            case "DashOculus":
-                Dash.SwapToOculusDash();
-                break;
-        }
-    }
-    public void ServiceButton(object sender, RoutedEventArgs args)
-    {
-        var source = args.Source as Control;
-
-        switch (source!.Name)
-        {
-            case "StartService":
-                Service.StartService();
-                break;
-            case "StopService":
-                Service.StopService();
-                break;
-        }
-    }
     public void RegenConfig(object sender, RoutedEventArgs args)
     {
         Config.GenerateConfigFile();
         Config.LoadConfigFile();
     }
+    public void ClearLog(object sender, RoutedEventArgs args)
+    {
+        Log.log.Clear();
+    }
+    public void RefreshStatus(object sender, RoutedEventArgs args)
+    {
+        UpdateStatus();
+    }
     public void AboutWindow(object sender, RoutedEventArgs args)
     {
         var window = new AboutWindow();
         window.ShowDialog(this);
+    }
+    public void UpdateStatus()
+    {
+        string asw = "";
+        if (Registry.DoesValueExist(@"SOFTWARE\Oculus", "AswDisabled") == true)
+        { asw = "Disabled"; }
+        else 
+        { asw = "Enabled"; }
+
+        string dash = Dash.GetCurrentDash();
+
+        string service = Service.ServiceStatus("OVRService");
+
+        OculusStatus.SetValue(Label.ContentProperty, $"ASW = {asw} | Dash = {dash} | Service = {service}");
     }
 }

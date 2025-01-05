@@ -64,10 +64,17 @@ public static class Registry
     }
     public static bool DoesValueExist(string keyPath, string value)
     {
-        RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyPath, false)!;
-        if (key.GetValue(value) != null)
+        if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyPath) != null)
         {
-            return true;
+            RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyPath, false)!;
+            if (key.GetValue(value) != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {

@@ -6,15 +6,14 @@ namespace VR_Tools.Functions;
 
 public static class Service
 {
-    private const string ServiceName = "OVRService";
-    public static void StartService()
+    public static void StartService(string service)
     {
-        if (DoesServiceExist() == false)
+        if (DoesServiceExist(service) == false)
         {
-            Log.AddLine($"{ServiceName} doesn't exist", "ERROR");
+            Log.AddLine($"{service} doesn't exist", "ERROR");
             return;
         }
-        ServiceController sc = new ServiceController(ServiceName);
+        ServiceController sc = new ServiceController(service);
         if (sc.Status == ServiceControllerStatus.Stopped | sc.Status == ServiceControllerStatus.StopPending)
         {
             sc.Start();
@@ -28,14 +27,14 @@ public static class Service
         }
         return;
     }
-    public static void StopService()
+    public static void StopService(string service)
     {
-        if (DoesServiceExist() == false)
+        if (DoesServiceExist(service) == false)
         {
-            Log.AddLine($"{ServiceName} doesn't exist", "ERROR");
+            Log.AddLine($"{service} doesn't exist", "ERROR");
             return;
         }
-        ServiceController sc = new ServiceController(ServiceName);
+        ServiceController sc = new ServiceController(service);
         if (sc.Status == ServiceControllerStatus.Running | sc.Status == ServiceControllerStatus.StartPending)
         {
             sc.Stop();
@@ -49,10 +48,26 @@ public static class Service
         }
         return;
     }
-    public static bool DoesServiceExist()
+    public static void RestartService(string service)
+    {
+        if (DoesServiceExist(service) == false)
+        {
+            Log.AddLine($"{service} doesn't exist", "ERROR");
+            return;
+        }
+        ServiceController sc = new ServiceController(service);
+        if (sc.Status == ServiceControllerStatus.Running | sc.Status == ServiceControllerStatus.StartPending)
+        {
+            sc.Stop();
+        }
+        sc.Start();
+        Log.AddLine("Service restarted", "INFO");
+        return;
+    }
+    public static bool DoesServiceExist(string service)
     {
         ServiceController[] services = ServiceController.GetServices();
-        var sc = services.FirstOrDefault(s => s.ServiceName == ServiceName);
+        var sc = services.FirstOrDefault(s => s.ServiceName == service);
         if (sc != null) 
         { 
             return(true); 
@@ -61,5 +76,23 @@ public static class Service
         { 
             return(false); 
         }
+    }
+    public static string ServiceStatus(string service)
+    {
+        if (DoesServiceExist(service) == false)
+        {
+            Log.AddLine($"{service} doesn't exist", "ERROR");
+            return "null";
+        }
+        ServiceController sc = new ServiceController(service);
+        if (sc.Status == ServiceControllerStatus.Running | sc.Status == ServiceControllerStatus.StartPending)
+        {
+            return ServiceControllerStatus.Running.ToString();
+        }
+        else if (sc.Status == ServiceControllerStatus.Stopped | sc.Status == ServiceControllerStatus.StopPending)
+        {
+            return ServiceControllerStatus.Stopped.ToString();
+        }
+        return sc.Status.ToString();
     }
 }

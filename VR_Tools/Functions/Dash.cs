@@ -28,7 +28,7 @@ public static class Dash
             Log.AddLine("Oculus Killer already installed", "ERROR");
             return;
         }
-        if (currentDash == null)
+        if (currentDash == "null")
         {
             return;
         }
@@ -66,7 +66,7 @@ public static class Dash
             Log.AddLine("Oculus Dash already installed", "ERROR");
             return;
         }
-        if (currentDash == null)
+        if (currentDash == "null")
         {
             return;
         }
@@ -83,17 +83,17 @@ public static class Dash
         Log.AddLine("Oculus Dash restored", "INFO");
         return;
     }
-    private static string? GetCurrentDash()
+    public static string GetCurrentDash()
     {
         if (Directory.Exists(FilePath) == false)
         {
             Log.AddLine("Directory doesn't exist", "ERROR");
-            return null;
+            return "null";
         }
         if (File.Exists(FullFilePath) == false)
         {
             Log.AddLine("OculusDash.exe doesn't exist", "ERROR");
-            return null;
+            return "null";
         }
         FileInfo fileInfo = new FileInfo(FullFilePath);
         if (fileInfo.Length < 5000000) // Oculus Killer is less than 1MB in size. Dash is ~32MB
