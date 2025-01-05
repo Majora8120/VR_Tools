@@ -52,26 +52,6 @@ public partial class MainWindow : Window
         }
         UpdateStatus();
     }
-    public void OpenProgram(object sender, RoutedEventArgs args)
-    {
-        var source = args.Source as Control;
-
-        switch (source!.Name)
-        {
-            case "OpenOculus":
-                StartProcess.Program("OculusClient", Config.OculusFilePath + @"Support\oculus-client\OculusClient.exe");
-                break;
-            case "OpenOculusDebug":
-                StartProcess.Program("OculusDebugTool", Config.OculusFilePath + @"Support\oculus-diagnostics\OculusDebugTool.exe");
-                break;
-            case "OpenOculusFolder":
-                StartProcess.Explorer(Config.OculusFilePath);
-                break;
-            case "OpenAppFolder":
-                StartProcess.Explorer(@".\");
-                break;
-        }
-    }
     public async void SwitchDash(object sender, RoutedEventArgs args)
     {
         var source = args.Source as Control;
@@ -101,6 +81,26 @@ public partial class MainWindow : Window
                 break;
         }
         UpdateStatus();
+    }
+    public void OpenProgram(object sender, RoutedEventArgs args)
+    {
+        var source = args.Source as Control;
+
+        switch (source!.Name)
+        {
+            case "OpenOculus":
+                StartProcess.Program("OculusClient", Config.OculusFilePath + @"Support\oculus-client\OculusClient.exe");
+                break;
+            case "OpenOculusDebug":
+                StartProcess.Program("OculusDebugTool", Config.OculusFilePath + @"Support\oculus-diagnostics\OculusDebugTool.exe");
+                break;
+            case "OpenOculusFolder":
+                StartProcess.Explorer(Config.OculusFilePath);
+                break;
+            case "OpenAppFolder":
+                StartProcess.Explorer(@".\");
+                break;
+        }
     }
     public void RegenConfig(object sender, RoutedEventArgs args)
     {
