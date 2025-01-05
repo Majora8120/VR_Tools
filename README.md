@@ -7,7 +7,7 @@ A collection of useful tools for VR. Mainly focused towards Oculus headsets
 * Change priority of programs to help reduce random stutters/lag on some hardware
 * Disable and re-enable Oculus Application Spacewarp via a registry entry
 * Switch between Oculus Dash and [Oculus Killer](https://github.com/BnuuySolutions/OculusKiller)
-* Start and stop Oculus service
+* Start, stop, and restart Oculus service
 * A few other random things
 
 <br/>![Image](Image.jpg)
