@@ -1,7 +1,6 @@
 ﻿#pragma warning disable CA1416 // Validate platform compatibility
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using VR_Tools.Functions;
 
@@ -74,10 +73,13 @@ public partial class MainWindow : Window
         switch (source!.Name)
         {
             case "StartService":
-                Service.StartService();
+                Service.StartService("OVRService");
                 break;
             case "StopService":
-                Service.StopService();
+                Service.StopService("OVRService");
+                break;
+            case "RestartService":
+                Service.RestartService("OVRService");
                 break;
         }
         UpdateStatus();
@@ -130,8 +132,8 @@ public partial class MainWindow : Window
 
         string dash = Dash.GetCurrentDash();
 
-        string service = Service.ServiceStatus();
-            
+        string service = Service.ServiceStatus("OVRService");
+
         OculusStatus.SetValue(Label.ContentProperty, $"ASW = {asw} | Dash = {dash} | Service = {service}");
     }
 }
