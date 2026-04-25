@@ -54,7 +54,7 @@ public static class Config
             new XElement("OculusLinkInstallPath", DefaultOculusFilePath), 
             new XElement("OculusKillerURL", DefaultOculusKillerURL)));
         config.Save(@".\config.xml");
-        Log.AddLine("Regenerated config file", "INFO");
+        Log.AddLine("Generated config file", "INFO");
         return;
     }
 }
