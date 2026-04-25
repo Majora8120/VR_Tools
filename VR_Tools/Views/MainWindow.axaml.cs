@@ -17,9 +17,8 @@ public partial class MainWindow : Window
 
 #if DEBUG
         TitleBar.Text = "VR Tools vDebug";
-        MenuBar_Debug.IsVisible = true;
 #else
-        TitleBar.Text = "VR Tools v1.0.0";
+        TitleBar.Text = "VR Tools v1.1.0";
 #endif
     }
     public void SetPriorityButton(object sender, RoutedEventArgs args)
@@ -40,13 +39,29 @@ public partial class MainWindow : Window
     {
         var source = args.Source as Control;
 
+        var subkey = @"SOFTWARE\Oculus";
+        var value = "AswDisabled";
         switch (source!.Name)
         {
             case "ASWEnable":
-                Registry.DeleteValue(@"SOFTWARE\Oculus", "AswDisabled");
+                if (!Registry.DoesSubKeyExist(subkey))
+                {
+                    Registry.CreateSubKey(subkey);
+                }
+                if (Registry.DoesValueExist(subkey, value))
+                {
+                    Registry.DeleteValue(subkey, "AswDisabled");
+                }
                 break;
             case "ASWDisable":
-                Registry.CreateValue(@"SOFTWARE\Oculus", "AswDisabled", 1, Microsoft.Win32.RegistryValueKind.DWord);
+                if (!Registry.DoesSubKeyExist(subkey))
+                {
+                    Registry.CreateSubKey(subkey);
+                }
+                if (!Registry.DoesValueExist(subkey, value))
+                {
+                    Registry.CreateValue(@"SOFTWARE\Oculus", "AswDisabled", 1, Microsoft.Win32.RegistryValueKind.DWord);
+                }
                 break;
         }
         UpdateStatus();

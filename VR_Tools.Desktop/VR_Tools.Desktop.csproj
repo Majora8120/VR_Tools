@@ -3,8 +3,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <PublishSingleFile>true</PublishSingleFile>
-    <SelfContained Condition="'$(Configuration)'=='Release'">true</SelfContained>
-    <PublishReadyToRun>true</PublishReadyToRun>
+    <SelfContained Condition="'$(Configuration)'=='Release'">false</SelfContained>
+    <PublishReadyToRun>false</PublishReadyToRun>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <Nullable>enable</Nullable>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
@@ -31,9 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="config.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="LICENSE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
