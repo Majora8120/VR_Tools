@@ -8,7 +8,7 @@ public static class Config
 {
     // Default values
     private const string LatestConfigVersion = "1.0";
-    private const string DefaultOculusFilePath = @"C:\Program Files\Oculus\";
+    private const string DefaultOculusFilePath = @"C:\Program Files\Meta Horizon\";
     private const string DefaultOculusKillerURL = @"https://github.com/BnuuySolutions/OculusKiller/releases/latest/download/OculusDash.exe";
     // Global values
     public static string OculusFilePath = DefaultOculusFilePath;
