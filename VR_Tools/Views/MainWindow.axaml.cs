@@ -41,18 +41,18 @@ public partial class MainWindow : Window
 
         var subkey = @"SOFTWARE\Oculus";
         var value = "AswDisabled";
-		switch (source!.Name)
+        switch (source!.Name)
         {
             case "ASWEnable":
                 if (!Registry.DoesSubKeyExist(subkey))
                 {
                     Registry.CreateSubKey(subkey);
-				}
+                }
                 if (Registry.DoesValueExist(subkey, value))
                 {
-					Registry.DeleteValue(subkey, "AswDisabled");
-				}
-				break;
+                    Registry.DeleteValue(subkey, "AswDisabled");
+                }
+                break;
             case "ASWDisable":
                 if (!Registry.DoesSubKeyExist(subkey))
                 {
@@ -60,8 +60,8 @@ public partial class MainWindow : Window
                 }
                 if (!Registry.DoesValueExist(subkey, value))
                 {
-					Registry.CreateValue(@"SOFTWARE\Oculus", "AswDisabled", 1, Microsoft.Win32.RegistryValueKind.DWord);
-				}
+                    Registry.CreateValue(@"SOFTWARE\Oculus", "AswDisabled", 1, Microsoft.Win32.RegistryValueKind.DWord);
+                }
                 break;
         }
         UpdateStatus();
