@@ -23,7 +23,7 @@
 				
 				<MenuItem Header="About" Name="MenuBar_About" Click="AboutWindow"/>
 
-				<MenuItem Header="Debug" Name="MenuBar_Debug" IsVisible="False">
+				<MenuItem Header="Debug" Name="MenuBar_Debug">
 					<MenuItem Header="Clear Log" Click="ClearLog"/>
 					<MenuItem Header="Refresh Status" Click="RefreshStatus"/>
 					<MenuItem Header="Regen Config File" Click="RegenConfig"/>

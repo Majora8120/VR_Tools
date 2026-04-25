@@ -17,7 +17,6 @@ public partial class MainWindow : Window
 
 #if DEBUG
         TitleBar.Text = "VR Tools vDebug";
-        MenuBar_Debug.IsVisible = true;
 #else
         TitleBar.Text = "VR Tools v1.0.0";
 #endif
