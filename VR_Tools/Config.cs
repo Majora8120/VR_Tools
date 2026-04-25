@@ -22,7 +22,7 @@ public static class Config
         }
         catch(Exception e)
         {
-            Log.AddLine(e.ToString(), "ERROR");
+            GenerateConfigFile();
             return;
         }
 
