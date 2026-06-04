@@ -131,4 +131,28 @@ public static class Registry
             return;
         }
     }
+
+    // Todo: move logging outside of these registry functions maybe
+    public static String? GetStringValue(string keyPath, string name)
+    {
+		if (Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyPath) != null)
+		{
+			RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(keyPath, true)!;
+			if (key.GetValueKind(name) == RegistryValueKind.String)
+			{
+                return key.GetValue(name)!.ToString();
+			}
+			else
+			{
+				key.Close();
+				Log.AddLine("Registry value doesn't exist", "ERROR");
+				return null;
+			}
+		}
+		else
+		{
+			Log.AddLine("SubKey doesn't exist", "ERROR");
+			return null;
+		}
+	}
 }
