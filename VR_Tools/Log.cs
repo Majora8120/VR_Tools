@@ -16,5 +16,17 @@ namespace VR_Tools
         {
             log.Insert(0, new Log(message, type));
         }
-    }
+        public static void Info(string message)
+        {
+            log.Insert(0, new Log(message, "INFO"));
+        }
+        public static void Warning(string message)
+        {
+			log.Insert(0, new Log(message, "WARNING"));
+		}
+		public static void Error(string message)
+		{
+			log.Insert(0, new Log(message, "ERROR"));
+		}
+	}
 }
