@@ -19,6 +19,7 @@
 			<Menu>
 				<MenuItem Header="File">
 					<MenuItem Header="Open App Folder" Name="OpenAppFolder" Click="OpenProgram"/>
+					<MenuItem Header="Open Link Folder" Name="OpenDashFolder" Click="OpenProgram"/>
 				</MenuItem>
 				
 				<MenuItem Header="About" Name="MenuBar_About" Click="AboutWindow"/>
@@ -31,48 +32,37 @@
 			</Menu>
 		</DockPanel>
 
-		<!--Oculus | Old color #ff00ca9a-->
-		<Border Width="750" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0, 0, 0, 0" CornerRadius="0" Background="#303030">
-			<TextBlock Margin="5" FontSize="16" HorizontalAlignment="Center" Text="Oculus"/>
-		</Border>
-		<Border Width="750" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0, 0, 0, 0" CornerRadius="0" Background="#303030">
-			<Label Margin="0" FontSize="14" HorizontalAlignment="Center" Name="OculusStatus"/>
-		</Border>
-		<Border BorderBrush="White" BorderThickness="1">
-			<WrapPanel HorizontalAlignment="Center">
-				<StackPanel Margin="5, 5, 5, 5" Background="#ff272c30">
-					<TextBlock  Margin="5" FontSize="14" HorizontalAlignment="Center" Text="Priority"/>
-					<Button FontSize="12" Background="#525252" Name="OVRServer_x64" Content="OVRServer__x64 (H)" Click="SetPriorityButton" HorizontalAlignment="Center" ToolTip.Tip="Sets OVRServer_x64 priority to high"/>
-					<Button FontSize="12" Background="#525252" Name="OculusDash" Content="Oculus Dash (AN)" Click="SetPriorityButton" HorizontalAlignment="Center" ToolTip.Tip="Sets OculusDash.exe priority to above normal&#x0a;Only use if the dash is lagging while in-game"/>
-				</StackPanel>
-
-				<StackPanel Margin="5, 5, 5, 5">
-					<TextBlock Margin="5" FontSize="14" HorizontalAlignment="Center" Text="Oculus PC ASW"/>
+		<StackPanel>
+			<Border Width="750" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0, 0, 0, 0" CornerRadius="0" Background="#303030">
+				<Label Margin="0" FontSize="14" HorizontalAlignment="Center" Name="OculusStatus"/>
+			</Border>
+			
+			<Label Margin="3" FontSize="16">Asynchronous Spacewarp</Label>
+			<StackPanel Orientation="Horizontal" Margin="3" Spacing="5">
 					<Button FontSize="12" Background="#525252" Name="ASWEnable" Content="Enable ASW" Click="EditRegistry" HorizontalAlignment="Center"/>
 					<Button FontSize="12" Background="#525252" Name="ASWDisable" Content="Disable ASW" Click="EditRegistry" HorizontalAlignment="Center"/>
-				</StackPanel>
-
-				<StackPanel Margin="5, 5, 5, 5">
-					<TextBlock Margin="5" FontSize="14" HorizontalAlignment="Center" Text="Dash"/>
-					<Button FontSize="12" Background="#525252" Name="DashOculus" Content="Oculus Dash" Click="SwitchDash" HorizontalAlignment="Center"/>
-					<Button FontSize="12" Background="#525252" Name="DashSteamVR" Content="SteamVR (Oculus Killer)" Click="SwitchDash" HorizontalAlignment="Center"/>
-				</StackPanel>
-
-				<StackPanel Margin="5, 5, 5, 5">
-					<TextBlock Margin="5" FontSize="14" HorizontalAlignment="Center" Text="Oculus Service"/>
-					<Button FontSize="12" Background="#525252" Name="StartService" Content="Start Service" Click="ServiceButton" HorizontalAlignment="Center"/>
-					<Button FontSize="12" Background="#525252" Name="RestartService" Content="Restart Service" Click="ServiceButton" HorizontalAlignment="Center"/>
-					<Button FontSize="12" Background="#525252" Name="StopService" Content="Stop Service" Click="ServiceButton" HorizontalAlignment="Center"/>
-				</StackPanel>
-
-				<StackPanel Margin="5, 5, 5, 5">
-					<TextBlock Margin="5" FontSize="14" HorizontalAlignment="Center" Text="Other"/>
-					<Button FontSize="12" Background="#525252" Name="OpenOculus" Content="Open Oculus Link" Click="OpenProgram" HorizontalAlignment="Center"/>
-					<Button FontSize="12" Background="#525252" Name="OpenOculusDebug" Content="Open Oculus Debug Tool" Click="OpenProgram" HorizontalAlignment="Center"/>
-					<Button FontSize="12" Background="#525252" Name="OpenOculusFolder" Content="Open Oculus Folder" Click="OpenProgram" HorizontalAlignment="Center"/>
-				</StackPanel>
-			</WrapPanel>
-		</Border>
+			</StackPanel>
+			
+			<Label Margin="3" FontSize="16">Priority</Label>
+			<StackPanel Orientation="Horizontal" Margin="3" Spacing="5">
+				<Button FontSize="12" Background="#525252" Name="OVRServer_x64" Content="OVRServer__x64 (H)" Click="SetPriorityButton" HorizontalAlignment="Center" ToolTip.Tip="Sets OVRServer_x64 priority to high"/>
+				<Button FontSize="12" Background="#525252" Name="OculusDash" Content="Oculus Dash (AN)" Click="SetPriorityButton" HorizontalAlignment="Center" ToolTip.Tip="Sets OculusDash.exe priority to above normal&#x0a;Only use if the dash is lagging while in-game"/>
+			</StackPanel>
+			
+			<Label Margin="3" FontSize="16">Dash Service</Label>
+			<StackPanel Orientation="Horizontal" Margin="3" Spacing="5">
+				<Button FontSize="12" Background="#525252" Name="StartService" Content="Start Service" Click="ServiceButton" HorizontalAlignment="Center"/>
+				<Button FontSize="12" Background="#525252" Name="RestartService" Content="Restart Service" Click="ServiceButton" HorizontalAlignment="Center"/>
+				<Button FontSize="12" Background="#525252" Name="StopService" Content="Stop Service" Click="ServiceButton" HorizontalAlignment="Center"/>
+			</StackPanel>
+			
+			<Label Margin="3" FontSize="16">Other</Label>
+			<StackPanel Orientation="Horizontal" Margin="3" Spacing="5">
+				<Button FontSize="12" Background="#525252" Name="OpenOculus" Content="Open Oculus Link" Click="OpenProgram" HorizontalAlignment="Center"/>
+				<Button FontSize="12" Background="#525252" Name="OpenOculusDebug" Content="Open Oculus Debug Tool" Click="OpenProgram" HorizontalAlignment="Center"/>
+				<Button FontSize="12" Background="#525252" Name="OpenOculusFolder" Content="Open Oculus Folder" Click="OpenProgram" HorizontalAlignment="Center"/>
+			</StackPanel>
+		</StackPanel>
 		
 		<!--Log | Old color DarkKhaki-->
 		<DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Margin="0, 70, 0, 0">
