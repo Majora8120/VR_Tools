@@ -2,12 +2,16 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using VR_Tools.Functions;
 
 namespace VR_Tools.Views;
 
 public partial class MainWindow : Window
 {
+    private const double AspectRatio = 5.0 / 4.0;
+    private bool _updatingSize;
+    
     public MainWindow()
     {
         InitializeComponent();
@@ -20,6 +24,25 @@ public partial class MainWindow : Window
         TitleBar.Text = "VR Tools v1.1.0";
 #endif
     }
+    
+    private void OnWindowSizeChanged(object? sender, SizeChangedEventArgs e)
+    {
+        if (_updatingSize)
+            return;
+        _updatingSize = true;
+        try
+        {
+            if (e.WidthChanged)
+                Height = Width / AspectRatio;
+            else
+                Width = Height * AspectRatio;
+        }
+        finally
+        {
+            _updatingSize = false;
+        }
+    }
+    
     public void SetPriorityButton(object sender, RoutedEventArgs args)
     {
         var source = args.Source as Control;
@@ -65,6 +88,8 @@ public partial class MainWindow : Window
         }
         UpdateStatus();
     }
+    
+
     public async void SwitchDash(object sender, RoutedEventArgs args)
     {
         var source = args.Source as Control;
