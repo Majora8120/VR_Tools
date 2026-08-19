@@ -9,5 +9,6 @@ public partial class LogWindow : Window
     public LogWindow()
     {
         InitializeComponent();
+        DataGrid.ItemsSource = Log.log;
     }
 }

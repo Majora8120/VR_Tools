@@ -12,7 +12,6 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         Config.LoadConfigFile();
-        DataGrid.ItemsSource = Log.log;
         UpdateStatus();
 
 #if DEBUG
@@ -135,6 +134,12 @@ public partial class MainWindow : Window
     public void AboutWindow(object sender, RoutedEventArgs args)
     {
         var window = new AboutWindow();
+        window.ShowDialog(this);
+    }
+
+    public void LogWindow(object sender, RoutedEventArgs args)
+    {
+        var window = new LogWindow();
         window.ShowDialog(this);
     }
     public void UpdateStatus()

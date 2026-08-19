@@ -8,7 +8,7 @@
 		Icon="\Assets\Icon.ico"
         Title="VR Tools"
 		SizeToContent="3"
-		Width="750" Height="550"
+		Width="600" Height="600"
 		CanResize="False">
 	<StackPanel TextElement.Foreground="#ffffffff">
 		<DockPanel DockPanel.Dock="Top" Background="#242323">
@@ -25,6 +25,7 @@
 				<MenuItem Header="About" Name="MenuBar_About" Click="AboutWindow"/>
 
 				<MenuItem Header="Debug" Name="MenuBar_Debug">
+					<MenuItem Header="Log" Name="MenuBar_Log" Click="LogWindow"/>
 					<MenuItem Header="Clear Log" Click="ClearLog"/>
 					<MenuItem Header="Refresh Status" Click="RefreshStatus"/>
 					<MenuItem Header="Regen Config File" Click="RegenConfig"/>
@@ -33,7 +34,7 @@
 		</DockPanel>
 
 		<StackPanel>
-			<Border Width="750" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0, 0, 0, 0" CornerRadius="0" Background="#303030">
+			<Border Width="600" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0, 0, 0, 0" CornerRadius="0" Background="#303030">
 				<Label Margin="0" FontSize="14" HorizontalAlignment="Center" Name="OculusStatus"/>
 			</Border>
 			
@@ -63,26 +64,5 @@
 				<Button FontSize="12" Background="#525252" Name="OpenOculusFolder" Content="Open Oculus Folder" Click="OpenProgram" HorizontalAlignment="Center"/>
 			</StackPanel>
 		</StackPanel>
-		
-		<!--Log | Old color DarkKhaki-->
-		<DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Margin="0, 70, 0, 0">
-			<StackPanel>
-				<Border Width="750" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0" CornerRadius="0" Background="#303030">
-					<TextBlock Margin="5" FontSize="16" HorizontalAlignment="Center" Text="Log"/>
-				</Border>
-				
-				<DataGrid x:Name="DataGrid"
-				AutoGenerateColumns="False" IsReadOnly="True"
-				GridLinesVisibility="All" HeadersVisibility="None"
-				BorderThickness="1" BorderBrush="White"
-				Height="140" RowHeight="30" Width="750">
-					<DataGrid.Columns>
-						<DataGridTextColumn Width="65" Binding="{Binding Type}" FontSize="12"/>
-						<DataGridTextColumn MinWidth="600" Binding="{Binding Message}" FontSize="12"/>
-					</DataGrid.Columns>
-				</DataGrid>
-			</StackPanel>
-		</DockPanel>
-
 	</StackPanel>
 </Window>

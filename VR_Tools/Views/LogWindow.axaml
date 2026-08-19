@@ -2,8 +2,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
         x:Class="VR_Tools.Views.LogWindow"
-        Title="LogWindow">
-    Welcome to Avalonia!
+        Title="LogWindow"
+        Width="800" Height="600"
+        CanResize="False">
+    <StackPanel>
+        <DataGrid x:Name="DataGrid"
+                  AutoGenerateColumns="False" IsReadOnly="True"
+                  GridLinesVisibility="All" HeadersVisibility="None"
+                  BorderThickness="1" BorderBrush="White"
+                  Height="600" RowHeight="30" Width="800">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="65" Binding="{Binding Type}" FontSize="12"/>
+                <DataGridTextColumn MinWidth="600" Binding="{Binding Message}" FontSize="12"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
 </Window>
