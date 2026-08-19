@@ -38,16 +38,16 @@
 				<Label Margin="0" FontSize="14" HorizontalAlignment="Center" Name="OculusStatus"/>
 			</Border>
 			
-			<Label Margin="3" FontSize="16">Asynchronous Spacewarp</Label>
-			<StackPanel Orientation="Horizontal" Margin="3" Spacing="5">
-					<Button FontSize="12" Background="#525252" Name="ASWEnable" Content="Enable ASW" Click="EditRegistry" HorizontalAlignment="Center"/>
-					<Button FontSize="12" Background="#525252" Name="ASWDisable" Content="Disable ASW" Click="EditRegistry" HorizontalAlignment="Center"/>
-			</StackPanel>
-			
 			<Label Margin="3" FontSize="16">Priority</Label>
 			<StackPanel Orientation="Horizontal" Margin="3" Spacing="5">
 				<Button FontSize="12" Background="#525252" Name="OVRServer_x64" Content="OVRServer__x64 (H)" Click="SetPriorityButton" HorizontalAlignment="Center" ToolTip.Tip="Sets OVRServer_x64 priority to high"/>
 				<Button FontSize="12" Background="#525252" Name="OculusDash" Content="Oculus Dash (AN)" Click="SetPriorityButton" HorizontalAlignment="Center" ToolTip.Tip="Sets OculusDash.exe priority to above normal&#x0a;Only use if the dash is lagging while in-game"/>
+			</StackPanel>
+			
+			<Label Margin="3" FontSize="16">Asynchronous Spacewarp</Label>
+			<StackPanel Orientation="Horizontal" Margin="3" Spacing="5">
+					<Button FontSize="12" Background="#525252" Name="ASWEnable" Content="Enable ASW" Click="EditRegistry" HorizontalAlignment="Center"/>
+					<Button FontSize="12" Background="#525252" Name="ASWDisable" Content="Disable ASW" Click="EditRegistry" HorizontalAlignment="Center"/>
 			</StackPanel>
 			
 			<Label Margin="3" FontSize="16">Dash Service</Label>
