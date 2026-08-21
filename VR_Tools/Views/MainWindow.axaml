@@ -50,9 +50,9 @@
                     <Label Margin="3" FontSize="16">Asynchronous Spacewarp</Label>
                     <StackPanel Orientation="Horizontal" Margin="3" Spacing="5">
                         <Button FontSize="12" Background="#525252" Name="ASWEnable" Content="Enable ASW"
-                                Click="EditRegistry" HorizontalAlignment="Center" />
+                                Click="EnableASWButton" HorizontalAlignment="Center" />
                         <Button FontSize="12" Background="#525252" Name="ASWDisable" Content="Disable ASW"
-                                Click="EditRegistry" HorizontalAlignment="Center" />
+                                Click="DisableASWButton" HorizontalAlignment="Center" />
                     </StackPanel>
 
                     <Label Margin="3" FontSize="16">Dash Service</Label>

@@ -57,38 +57,24 @@ public partial class MainWindow : Window
                 break;
         }
     }
-    public void EditRegistry(object sender, RoutedEventArgs args)
-    {
-        var source = args.Source as Control;
 
-        var subkey = @"SOFTWARE\Oculus";
-        var value = "AswDisabled";
-        switch (source!.Name)
+    public void EnableASWButton(object sender, RoutedEventArgs args)
+    {
+        if (ASW.IsDisabled())
         {
-            case "ASWEnable":
-                if (!Registry.DoesSubKeyExist(subkey))
-                {
-                    Registry.CreateSubKey(subkey);
-                }
-                if (Registry.DoesValueExist(subkey, value))
-                {
-                    Registry.DeleteValue(subkey, "AswDisabled");
-                }
-                break;
-            case "ASWDisable":
-                if (!Registry.DoesSubKeyExist(subkey))
-                {
-                    Registry.CreateSubKey(subkey);
-                }
-                if (!Registry.DoesValueExist(subkey, value))
-                {
-                    Registry.CreateValue(@"SOFTWARE\Oculus", "AswDisabled", 1, Microsoft.Win32.RegistryValueKind.DWord);
-                }
-                break;
+            ASW.Enable();
         }
         UpdateStatus();
     }
-    
+
+    public void DisableASWButton(object sender, RoutedEventArgs args)
+    {
+        if (!ASW.IsDisabled())
+        {
+            ASW.Disable();
+        }
+        UpdateStatus();
+    }
 
     public async void SwitchDash(object sender, RoutedEventArgs args)
     {
