@@ -3,7 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using VR_Tools.Functions;
+using VR_Tools.Core;
 
 namespace VR_Tools.Views;
 
@@ -156,7 +156,7 @@ public partial class MainWindow : Window
     public void UpdateStatus()
     {
         string asw = "";
-        if (Registry.DoesValueExist(@"SOFTWARE\Oculus", "AswDisabled") == true)
+        if (ASW.IsDisabled())
         { asw = "Disabled"; }
         else 
         { asw = "Enabled"; }

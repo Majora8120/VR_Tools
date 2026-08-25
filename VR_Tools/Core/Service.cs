@@ -2,7 +2,7 @@
 using System.ServiceProcess;
 using System.Linq;
 
-namespace VR_Tools.Functions;
+namespace VR_Tools.Core;
 
 public static class Service
 {

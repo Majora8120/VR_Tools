@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace VR_Tools.Functions;
+namespace VR_Tools.Core;
 
 public static class Priority
 {

@@ -4,7 +4,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace VR_Tools.Functions;
+namespace VR_Tools.Core;
 
 public static class Dash
 {

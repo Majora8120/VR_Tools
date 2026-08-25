@@ -2,7 +2,7 @@
 using System;
 using Microsoft.Win32;
 
-namespace VR_Tools
+namespace VR_Tools.Core
 {
 	internal class ASW
 	{
